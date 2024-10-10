@@ -1,0 +1,80 @@
+# 
+# The following lines prevent .htaccess and .htpasswd files from being 
+# viewed by Web clients. 
+# 
+<FilesMatch "^\.ht"> 
+    Order allow,deny 
+    Deny from all 
+</FilesMatch>
+## contrôle du cache navigateur - Expire headers
+<IfModule mod_expires.c>
+	ExpiresActive On
+	ExpiresDefault "access plus 7200 seconds"
+	ExpiresByType image/jpg 			"access plus 2592000 seconds"
+	ExpiresByType image/jpeg 			"access plus 2592000 seconds"
+	ExpiresByType image/png 			"access plus 2592000 seconds"
+	ExpiresByType image/gif 			"access plus 2592000 seconds"
+	ExpiresByType image/svg+xml			"access plus 2592000 seconds"
+	AddType image/x-icon .ico
+	ExpiresByType image/ico 			"access plus 2592000 seconds"
+	ExpiresByType image/icon 			"access plus 2592000 seconds"
+	ExpiresByType image/x-icon 			"access plus 2592000 seconds"
+	ExpiresByType text/css 				"access plus 2592000 seconds"
+	ExpiresByType text/javascript 			"access plus 2592000 seconds"
+	ExpiresByType application/javascript 		"access plus 2592000 seconds"
+	ExpiresByType application/x-javascript 		"access plus 2592000 seconds"
+	ExpiresByType application/x-shockwave-flash 	"access plus 2592000 seconds"
+<FilesMatch "\\.(ico|jpe?g|png|gif|swf|css|js)$">
+Header set Cache-Control "max-age=2592000, public"
+</FilesMatch>
+</IfModule>
+RewriteEngine On
+
+RewriteCond %{HTTPS} !=on
+RewriteRule .* https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+
+RewriteRule ^boutique-en-ligne/$ /article/boutique-en-ligne.php
+RewriteRule ^boutique-en-ligne$ /article/boutique-en-ligne.php
+RewriteRule ^boutique-en-ligne/page-([0-9]+).html$ /article/boutique-en-ligne.php?page=$1 [QSA,L]
+
+RewriteRule ^boutique-en-ligne/nouveaute.html$ /article/nouveaute.php
+RewriteRule ^boutique-en-ligne/vente-en-gros.php /article/vente-en-gros.php
+RewriteRule ^boutique-en-ligne/vente-en-gros1.php /article/vente-en-gros1.php
+RewriteRule ^boutique-en-ligne/top-vente.html /article/top-vente.php
+RewriteRule ^([a-z\-]+)\.html$ /mot-cle/$1.php [QSA,L]
+RewriteRule ^en-savoir-plus/([a-z\-]+)\.html$ /mot-cle/$1.php [QSA,L]
+
+RewriteRule ^boutique-en-ligne/promo/$ /article/promo.php [QSA,L]
+RewriteRule ^boutique-en-ligne/promo/page-([0-9]+)\.html$ /article/promo.php?page=$1 [QSA,L]
+
+RewriteRule ^boutique-en-ligne/([a-z\-]*)$ /article/article1.php?cat=$1 [L]
+RewriteRule ^boutique-en-ligne/([a-z\-]*)/$ /article/article1.php?cat=$1 [L]
+RewriteRule ^boutique-en-ligne/([a-z\-]*)/page-([0-9]+)\.html$ /article/article1.php?cat=$1&page=$2 [L]
+
+RewriteRule ^boutique-en-ligne/([a-z\-]*)/([a-z\-]+)$ /article/article1.php?cat=$1&type=$2 [L]
+RewriteRule ^boutique-en-ligne/([a-z\-]*)/([a-z\-]+)/$ /article/article1.php?cat=$1&type=$2 [L]
+RewriteRule ^boutique-en-ligne/([a-z\-]*)/([a-z\-]+)/page-([0-9]+)\.html$ /article/article1.php?cat=$1&type=$2&page=$3 [L]
+
+RewriteRule ^boutique-en-ligne/([a-z0-9\-]*)/([a-z0-9\-]+)/suggere_([a-z0-9\-]+)\.html$ /article/suggere-article.php?cat=$1&type=$2&prod=$3&fiche=$4 [L]
+RewriteRule ^boutique-en-ligne/([a-z0-9\-]*)/([a-z0-9\-]+)/suggerer_([a-z0-9\-]+)\.html$ /article/suggerer-article.php?cat=$1&type=$2&prod=$3&fiche=$4 [L]
+RewriteRule ^boutique-en-ligne/([a-z0-9\-]*)/([a-z0-9\-]+)/suggererenvoie_([a-z0-9\-]+)\.html$ /article/suggerer-article-envoie.php?cat=$1&type=$2&prod=$3&fiche=$4 [L]
+RewriteRule ^boutique-en-ligne/([a-z0-9\-]*)/([a-z0-9\-]+)/suggererveri_([a-z\-0-9]+)\.html$ /article/suggerer-article-veri.php?cat=$1&type=$2&prod=$3&fiche=$4 [L]
+
+RewriteRule ^boutique-en-ligne/([a-z0-9\-]*)/([a-z0-9\-]+)/([a-z0-9\-]+)\.html$ /article/fiche-article.php?cat=$1&type=$2&prod=$3 [L]
+
+RewriteRule ^festival-oriental/$ /festival-oriental.php
+RewriteRule ^festival-oriental/soiree-orientale.html /mot-cle/soiree-orientale.php
+RewriteRule ^festival-oriental/([a-z0-9\-]*):([0-9]+)\.html$ /festival-oriental.php?cat=$1&id=$2 [L]
+RewriteRule ^forum-danse-orientale/fdo/ /forum-danse-orientale/changement.php
+RewriteRule ^map.xml /map/map.php
+RewriteRule ^map1.xml /map/map1.php
+RewriteRule ^map2.xml /map/map2.php
+RewriteRule ^map3.xml /map/map3.php
+RewriteRule ^map4.xml /map/map4.php
+RewriteRule ^map5.xml /map/map5.php
+RewriteRule ^partenaire-([0-9]+)\.php$ /partenaire.php?page=$1 [QSA,L]
+RewriteRule ^photo/vetement/robe-de-soiree/robe-soiree-rouge-paillette-petit-2.jpg /photo/vetement/robe-de-soiree/robe-soiree-rouge-paillette-petit.jpg
+RewriteRule ^photo/vetement/robe-de-soiree/robe-soiree-noir-argente-petit-2.jpg /photo/vetement/robe-de-soiree/robe-soiree-noir-argente-petit.jpg
+RewriteRule ^([a-z/\-]*)\.png /images/bandeau.jpg
+RewriteRule ^photo/vetement/tenue-de-soiree/tenue([a-z0-9\-]*).jpg /photo/vetement/robe-de-soiree/robe$1.jpg [QSA,L]
+RewriteRule ^js/jquery-min_([0-9]*)\.js$ /js/jquery-min.js?page=$1 [L]

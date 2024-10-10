@@ -1,0 +1,1 @@
+include'../php/404.php';exit(); ?> 

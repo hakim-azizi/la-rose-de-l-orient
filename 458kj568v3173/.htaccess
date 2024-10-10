@@ -1,0 +1,7 @@
+AuthUserFile /home/www/hakazizi/www1/458kj568v3173/.htpasswd
+AuthName "L'accès à ce répertoire est sécurisé."
+AuthType Basic
+
+<limit GET POST>
+require valid-user
+</limit>
