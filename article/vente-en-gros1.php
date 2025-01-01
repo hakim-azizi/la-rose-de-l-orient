@@ -21,31 +21,29 @@ if($quantitete<5){$reponse.='les+quantites+sont+inferieur+a+5+';}
 
 if(!preg_match("#^([a-zA-Z0-9_.\-]{0,100})@([a-zA-Z0-9_.\-]{0,100})([.]{0,1})([a-z]{0,4})$#",$_POST['mail'])){ $reponse.="votre+mail+n+est+pas+du+bon+format+";}else{$mail=$_POST["mail"];}
 
-// if(!ereg       ("^([a-zA-Z0-9_.\-]{0,100})@([a-zA-Z0-9_.\-]{0,100})([.]{0,1})([a-z]{0,4})$",$_POST['mail'])) { $reponse.="votre+mail+n+est+pas+du+bon+format+";}else{$mail=$_POST["mail"];}
+
+$prenom=preg_replace("#[^a-zA-Z0-9 ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½]#",' ',$_POST['prenom']);
 
 
-$prenom=preg_replace("#[^a-zA-Z0-9 éèêëÊËàâäÂÄîïÎÏûùüÛÜôöøÔÖç]#",' ',$_POST['prenom']);
+$nom=preg_replace("#[^a-zA-Z0-9 ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½]#",' ',$_POST['nom']);
 
 
-$nom=preg_replace("#[^a-zA-Z0-9 éèêëÊËàâäÂÄîïÎÏûùüÛÜôöøÔÖç]#",' ',$_POST['nom']);
+$civil=preg_replace("#[^a-zA-Z0-9 ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½]#",' ',$_POST['civil']);
 
 
-$civil=preg_replace("#[^a-zA-Z0-9 éèêëÊËàâäÂÄîïÎÏûùüÛÜôöøÔÖç]#",' ',$_POST['civil']);
+$tel=preg_replace("#[^a-zA-Z0-9 ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½]#",' ',$_POST['tel']);
 
 
-$tel=preg_replace("#[^a-zA-Z0-9 éèêëÊËàâäÂÄîïÎÏûùüÛÜôöøÔÖç]#",' ',$_POST['tel']);
+$adresse=preg_replace("#[^a-zA-Z0-9 ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½]#",' ',$_POST['adresse']);
 
 
-$adresse=preg_replace("#[^a-zA-Z0-9 éèêëÊËàâäÂÄîïÎÏûùüÛÜôöøÔÖç]#",' ',$_POST['adresse']);
+$cp=preg_replace("#[^a-zA-Z0-9 ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½]#",' ',$_POST['cp']);
 
 
-$cp=preg_replace("#[^a-zA-Z0-9 éèêëÊËàâäÂÄîïÎÏûùüÛÜôöøÔÖç]#",' ',$_POST['cp']);
+$ville=preg_replace("#[^a-zA-Z0-9 ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½]#",' ',$_POST['ville']);
 
 
-$ville=preg_replace("#[^a-zA-Z0-9 éèêëÊËàâäÂÄîïÎÏûùüÛÜôöøÔÖç]#",' ',$_POST['ville']);
-
-
-$pays=preg_replace("#[^a-zA-Z0-9 éèêëÊËàâäÂÄîïÎÏûùüÛÜôöøÔÖç]#",' ',$_POST['pays']);
+$pays=preg_replace("#[^a-zA-Z0-9 ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½]#",' ',$_POST['pays']);
 
 
 $ref=preg_replace("#[^a-zA-Z0-9]#",'',$_POST['ref']);
@@ -72,7 +70,7 @@ if($pays=='' OR $pays==' '){$reponse.='le+champs+pays+est+vide+';}
 
 
 if($reponse!=NULL){header("location:vente-en-gros.php?reponse=$reponse");exit();}
-$sujet="une demande de commande en gros a été effectué sur la rose de l orient";
+$sujet="une demande de commande en gros a ï¿½tï¿½ effectuï¿½ sur la rose de l orient";
 $message="$civil $nom $prenom
 $adresse
 $cp $ville
@@ -80,11 +78,11 @@ $pays
 mail: $mail
 tel: $tel
 
-reference: $ref quantité: $quantite
-reference1: $ref1 quantité: $quantite1
-reference2: $ref2 quantité: $quantite2
-reference3: $ref3 quantité: $quantite3
-reference4: $ref4 quantité: $quantite4
+reference: $ref quantitï¿½: $quantite
+reference1: $ref1 quantitï¿½: $quantite1
+reference2: $ref2 quantitï¿½: $quantite2
+reference3: $ref3 quantitï¿½: $quantite3
+reference4: $ref4 quantitï¿½: $quantite4
 ________________________
 ";
 $message.=htmlentities(htmlspecialchars($_POST['message']));
@@ -95,7 +93,7 @@ $entete .= "MIME-version: 1.0\n";
 $entete .= "Content-type: text/html; charset= iso-8859-1\n";
 $entete .= "Reply-To: $mail\r\n";
 // mail($email,$sujet,$message,$entete);
-$message="Ce mail est une copie de la demande de vente en gros que vous avez effectué sur le site la rose de l'orient<br />
+$message="Ce mail est une copie de la demande de vente en gros que vous avez effectuï¿½ sur le site la rose de l'orient<br />
 ________________________<br />
 $message";
 $email = $mail;
