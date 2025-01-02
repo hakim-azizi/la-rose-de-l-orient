@@ -59,11 +59,13 @@ $(function () {
     setInterval(function () {
         $(`#texte${num}`).delay(3000).hide('scale', 500, function () {
             $(`#image${num}`).hide('slide', { direction: 'right' }, 500, function () {
-
+                num++;
+console.log('num -> ', num ,'>= ', total,' <- total');
                 if (num >= total) {
-
+console.log('on revient à zéro');
                     num = 0; // Retour au premier élément
-                }
+                } 
+               
                 $(`#image${num}`).show('slide', { direction: 'right' }, 500, function () {
                     $(`#texte${num}`).show('puff', 500);
                 });
