@@ -1,7 +1,7 @@
 <?php
 $url=preg_replace(array("@(^[/]{1})@","@([A-Za-z0-9:_\=\&\.\?\+\%\-])@","@/@"),array("","","../"),$url_demande);
 if(strlen($url)==0){$url_acceuil='./';}else{$url_acceuil=$url;}
-if(preg_match("#^([0-9]{25})$#",@$_COOKIE['identifiant'])){$identifiant=$_COOKIE['identifiant'];
+if(@preg_match("#^([0-9]{25})$#",@$_COOKIE['identifiant'])){$identifiant=$_COOKIE['identifiant'];
 $nbpanier=mysqli_fetch_array(mysqli_query($connectionbd,"SELECT COUNT(*) FROM panier WHERE (valide=0 OR valide=1) AND identifiant='$identifiant'"));}
 if(@$nbpanier==NULL){$nbpanier=0;}
 if(@$titre_page==NULL){$titre_page=str_replace(array("/","-",".php"),array(", "," ",""),"La Rose de l&#039;Orient$url_demande");}
@@ -124,15 +124,18 @@ width:100%;
 height:52px;
 clear:both
 }
-.colorpanier{
 <?php
 if(@$nbpanier['COUNT(*)']>0){ ?>
+.colorpanier{
 background-color:#DE1482;
-<?php } ?>
+
+}<?php } ?>
+.colorpanier{
 bottom:0;
 right:0;
 width:44px;
-height:36px;}
+height:36px;
+}
 .panier{
 bottom:0;
 right:8px;
@@ -218,8 +221,6 @@ width:100%;
 height:1722px;
 overflow:hidden;
 }
-
-
 .navigation{
 position:absolute;
 top:40px;
@@ -234,7 +235,6 @@ position:absolute;
 width:85%;
 margin-left:15%;
 }
-
 .navigation
 {
 border-bottom:4px solid;
@@ -243,7 +243,6 @@ position:absolute;
 }
 .navigation ul{
 width:100%;
-
 }
 .navigation li{
 padding-left:8px;
@@ -271,11 +270,6 @@ display:none;
 .grandaffichemenu{
 display:block;
 }
-
-
-
-
-
 }
 @media screen and (max-width: 966px)
 {
@@ -289,7 +283,6 @@ background:url("<?php echo $url; ?>images/icone.gif") no-repeat 0 0;
 width:200%;
 margin-left:-300px;
 position:absolute;
-
 }
 .navigation
 {
@@ -328,17 +321,12 @@ display:block;
 width:100%;
 background:url("<?php echo $url; ?>images/fleche-droite.gif") no-repeat right center;
 }
-
-
 .petitaffichemenu{
 display:block;
 }
 .grandaffichemenu{
 display:none;
 }
-
-
-
 .navigation li a{
 display:block;
 width:100%}
@@ -363,19 +351,11 @@ background:rgba(0, 0, 0, 0.4);
 display:none;
 }
 }
-
-
 .contenu{
 position:absolute;
 top:37px;
 left:1%;
 }
-	
-
-
-
-
-
 .conteneur-panier p span{
 display:inline;
 float:left;
@@ -393,75 +373,101 @@ width:100%;
 .menubas ul li span{
 padding:0 8px;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <?php if($url_reel=='/index.php'){ ?>
-.acceuil{
-width:100%;
-height:auto;
-margin-left:auto;
-margin-right:auto;
-margin-bottom:10px;
-overflow:hidden;
-}
-.image{
-overflow:hidden;
-height:100%;
-width:200%;
-top:0;
-left:0;
-}
-.texte{
-opacity: 1;
-}
-@media screen and (min-width: 401px)
-{
-
-.acceuil{
-position:relative;
-left:21.4%;
-}
-ul.image li{
-list-style:none;
-width:30%;
-height:100%;
+    .image {
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    width: 100%;
+    height: auto;
 }
 
-.texte{
-position:absolute;
-top:0;
-right:42.8%;
-border:1px solid #DE1482;
-width:30%;
-}
-}
-@media screen and (max-width: 400px)
-{
-
-.acceuil{
-position:relative;
-left:3%;
-}
-ul.image li{
-list-style:none;
-width:49%;
-height:100%;
+ #image0,#texte0,.image-li,.texte {
+    border: 1px solid #DE1482;
+    box-sizing: border-box;
+    list-style: none;
+    width: 45%;
+    height:auto;
+    display: none; /* Tous les éléments sont cachés par défaut */
+    aspect-ratio: 3/4;
 }
 
-.texte{
-position:absolute;
-top:0;
-right:6%;
-border:1px solid #DE1482;
-width:48%;
-}
+.image-li{
+    display: flex;
+    justify-content: center;
+    align-items:stretch;
 }
 
+.image-li>a>img{
+    width:100%;
+    height:100%;
+    border:none;
+    object-fit: contain;
+}
 
-
-
+.texte {
+    opacity: 1;
+    background: #FFF;
+    padding: 10px;
+}
 <?php } ?>
-.texteredim{
 
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -479,7 +485,7 @@ list-style:none
 .photo_redimention{
 border:1px solid #DE1482;
 width:22%;
-float:left;
+/* float:left; */
 margin-left:2%
 }
 }
@@ -488,20 +494,10 @@ margin-left:2%
 .photo_redimention{
 border:1px solid #DE1482;
 width:46%;
-float:left;
+/* float:left; */
 margin-left:2%
 }
 }
-
-
-
-
-
-
-
-
-
-
 <?php
 if(strpos($url_reel,'article')!==false){ ?>
 .article{
@@ -521,12 +517,9 @@ height:auto;
 margin-left:auto;
 margin-right:auto;
 }
-
-
 .slider{
 width:100%;
 }
-
 @media screen and (min-width: 551px)
 {
 .photo ul li{
@@ -547,9 +540,6 @@ margin-left:10.6529209622%;
 width:227.34375%;
 }
 }
-
-
-
 .photo{
 background-color:#777777;
 cursor:move;
@@ -565,27 +555,10 @@ list-style:none;
 }
 .photo ul li{
 float:left;
-postion:relative;
+position:relative;
 text-align:center;
 }
-#l1{
-}
-#l2{
-}
-#l3{
-}
-<?php } ?>
-
-
-
-
-
-
-
-
-
-
-<?php
+<?php } 
 if($url_reel=='/article/vente-en-gros.php' OR $url_reel=='/inscription.php' OR $url_reel=='/livraison.php'){ ?>
 .gros{
 margin-top:8px;
@@ -596,10 +569,6 @@ width:100px;
 }
 <?php } ?>
 </style>
-
-
-
-
 </head>
 <body>
 <div style="position:absolute;top:40px;left:80px">&nbsp;</div>
