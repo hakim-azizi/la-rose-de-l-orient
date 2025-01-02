@@ -1,6 +1,6 @@
 <?php
 $url_demande=$_SERVER["REQUEST_URI"];
-if(strstr($url_demander,'mots-interdits.php')){include'404.php';}
+if(strstr($url_demande,'mots-interdits.php')){include'404.php';}
 $url_reel=$_SERVER["PHP_SELF"];
 header('Content-type: text/html; charset=utf-8');
 if(preg_match("#html\?#",$url_demande)){
@@ -90,9 +90,9 @@ header("Status:301 Moved Permanently", false, 301);
 header("location:https://robedelorient.com".$_SERVER["REQUEST_URI"]."");
 exit();
 }
-$connectionbd=mysqli_connect("localhost","root","","hakazizi_3");
+$connectionbd=mysqli_connect("localhost","root","20-Juillet-1976","hakazizi_3");
 }else{
-$connectionbd=mysqli_connect("***","***","***" ,"***");
+$connectionbd=mysqli_connect("db5015774276.hosting-data.io","dbu4967514","20-Juillet-1976" ,"dbs12868975");
 }
 //récupération de l'IP
 if(isset($_SERVER['HTTP_X_FORWARDED_FOR'])) {
@@ -105,7 +105,7 @@ else {
   $ip = $_SERVER['REMOTE_ADDR'];
 }
 $boutique=intval(@$_GET['affilier']);
-if(preg_match("@^([0-9]{25})$@",@$_COOKIE['con']))
+if (isset($_COOKIE['con']) && is_string($_COOKIE['con']) && preg_match("@^([0-9]{25})$@", $_COOKIE['con']))
 {
 $con=$_COOKIE['con'];
 $sql1=mysqli_query($connectionbd,"SELECT * FROM client WHERE con = '$con'");
